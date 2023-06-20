@@ -6,4 +6,4 @@ interface RowElement {
   age?: number;
 }
 
-export {RowID, RowElement}
+export { RowID, RowElement };
