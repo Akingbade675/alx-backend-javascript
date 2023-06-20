@@ -5,7 +5,6 @@ interface Teacher {
   yearsOfExperience?: number;
   location: string;
   [key: string]: any;
-  
 }
 
 interface Directors extends Teacher {
@@ -17,17 +16,21 @@ interface printTeacherFunction {
 }
 
 const printTeacher: printTeacherFunction = (firstName, lastName) => {
-  return (`${firstName.charAt(0)}. ${lastName}`)
-}
+  return `${firstName.charAt(0)}. ${lastName}`;
+};
 
-interface StudentInterface {
+interface StudentClassInterface {
   firstName: string;
   lastName: string;
   workOnHomework(): string;
   displayName(): string;
 }
 
-class StudentClass implements StudentInterface {
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+class StudentClass implements StudentClassInterface {
   firstName: string;
   lastName: string;
 
@@ -37,7 +40,7 @@ class StudentClass implements StudentInterface {
   }
 
   workOnHomework(): string {
-    return 'Currently working'
+    return "Currently working";
   }
 
   displayName(): string {
