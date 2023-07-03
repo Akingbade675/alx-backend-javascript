@@ -9,9 +9,9 @@ app.get('/', (req, res) => {
 
 app.get('/students', (req, res) => {
   countStudents(process.argv[2]).then((data) => {
-    res.send('This is the list of our students\n' + data);
+    res.send(`This is the list of our students\n${data}`);
   }).catch(() => {
-    res.staus(404).send('Cannot load the database');
+    res.status(404).send('Cannot load the database');
   });
 });
 

@@ -31,7 +31,7 @@ function countStudents(path) {
         output += `Number of students in ${key}: ${value.length}. List: ${value.join(', ')}\n`;
       }
       console.log(output.slice(0, -1));
-      resolve(output);
+      resolve(output.slice(0, -1));
     });
   });
 }
