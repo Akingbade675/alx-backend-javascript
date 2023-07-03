@@ -1,10 +1,10 @@
-import express from 'express'
-import routes from './routes/index'
+import express from 'express';
+import routes from './routes/index';
 
-const app = express()
+const app = express();
 
-app.use('/', routes)
+app.use('/', routes);
 
-app.listen('1245', () => console.log('Server started at port 1245'))
+app.listen('1245', () => console.log('Server started at port 1245'));
 
-export default app
+export default app;
