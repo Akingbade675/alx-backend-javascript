@@ -10,9 +10,9 @@ const app = http.createServer((req, res) => {
     res.write('This is the list of our students\n');
     countStudents(process.argv[2]).then((data) => {
       res.end(data);
-    }).catch(() => {
+    }).catch((err) => {
       res.statusCode = 404;
-      res.end('Cannot load the database');
+      res.end(err.message);
     });
   }
 });

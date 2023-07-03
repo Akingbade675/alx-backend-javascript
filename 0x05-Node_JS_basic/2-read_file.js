@@ -22,13 +22,12 @@ function countStudents(path) {
       }
       fields[field].push(data[0]);
     }
-    console.log('Number of students:', lines.length);
+    console.log(`Number of students: ${lines.length}`);
     for (const [key, value] of Object.entries(fields)) {
       console.log(`Number of students in ${key}: ${value.length}. List: ${value.join(', ')}`);
     }
   } catch (e) {
-    console.log(e);
-    throw new Error('Cannot load the database');
+    throw Error('Cannot load the database');
   }
 }
 
