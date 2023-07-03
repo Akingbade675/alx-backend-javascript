@@ -3,7 +3,7 @@ import readDatabase from '../utils';
 
 export default class StudentsController {
   static getAllStudents(request, response) {
-    readDatabase('database.csv').then((data) => {
+    readDatabase(process.argv[2]).then((data) => {
       let output = 'This is the list of our students\n';
       const keys = (Object.keys(data)).sort();
       for (const key of keys) {
@@ -20,7 +20,7 @@ export default class StudentsController {
     if (major !== 'CS' && major !== 'SWE') {
       response.status(500).send('Major parameter must be CS or SWE');
     }
-    readDatabase('database.csv').then((data) => {
+    readDatabase(process.argv[2]).then((data) => {
       response.send(`List: ${data[major].join(', ')}`);
     }).catch((err) => {
       response.status(500).send('Cannot load the database');
