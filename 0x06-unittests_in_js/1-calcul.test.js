@@ -12,6 +12,6 @@ describe('calculateNumber', () => {
     assert.equal(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
   });
   it('return Error if b equals 0', () => {
-    assert.equal(calculateNumber('DIVIDE', 1.4, 0), 'Error');
+    assert.equal(calculateNumber('DIVIDE', 1.4, 0.3), 'Error');
   });
 });

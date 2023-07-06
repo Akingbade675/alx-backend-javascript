@@ -13,7 +13,7 @@ describe('GET /', (done) => {
     })
   });
 
-  it('/GET should get the correct result', () => {
+  it('GET / returns “Welcome to the payment system”', () => {
     expect(response.body).equal('Welcome to the payment system');
   });
 
@@ -30,20 +30,21 @@ describe('GET /', (done) => {
 });
 
 
-describe('GET cart/:id', () => {
+describe('GET /cart/:id', () => {
   const port = '7865';
-  let reponse, body;
 
-  it('should return status code 200 when :id is a number', (done) => {
-    request(`http://localhost:${port}/cart/10`, (err, res) => {
+  it('GET /cart/:id returns "Payment methods for cart :id"', (done) => {
+    const id = 10;
+    request(`http://localhost:${port}/cart/${id}`, (err, res) => {
       expect(res.statusCode).equal(200);
-      expect(res.body).equal('Payment methods for cart 10');
+      expect(res.body).equal(`Payment methods for cart ${id}`);
       done();
     });
   });
   
-  it('should return status code 404 when :id is NOT a number', (done) => {
-    request(`http://localhost:${port}/cart/name`, (err, res) => {
+  it('GET /cart/:id can’t accept :id not a number', (done) => {
+    const id = 'number';
+    request(`http://localhost:${port}/cart/${id}`, (err, res) => {
       expect(res.statusCode).equal(404);
       expect(res.body).equal('Error: id must be a number');
       done();
@@ -54,13 +55,20 @@ describe('GET cart/:id', () => {
 
 // Test for the /available_payments endpoint
 describe('GET /available_payments', function () {
-  it('should return available payment methods', (done) => {
+  it('GET /available_payments exists', (done) => {
     request.get('http://localhost:7865/available_payments', (err, response, body) => {
       expect(response.statusCode).to.equal(200);
-      const paymentMethods = JSON.parse(body).payment_methods;
-      expect(paymentMethods).to.deep.equal({
-        credit_cards: true,
-        paypal: false
+      done();
+    });
+  });
+
+  it('GET /available_payments returns the right object', (done) => {
+    request.get('http://localhost:7865/available_payments', (err, response, body) => {
+      expect(JSON.parse(body)).to.eql({
+        payment_methods: {
+          credit_cards: true,
+          paypal: false
+        }
       });
       done();
     });
@@ -69,7 +77,7 @@ describe('GET /available_payments', function () {
 
   
 // Test for the /login endpoint
-describe.only('POST /login', function () {
+describe('POST /login', function () {
   it('should return a welcome message with the username', (done) => {
     const username = 'JohnDoe';
     const requestData = {

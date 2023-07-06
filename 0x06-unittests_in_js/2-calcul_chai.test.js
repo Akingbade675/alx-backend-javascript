@@ -12,6 +12,6 @@ describe('calculateNumber', () => {
     expect(calculateNumber('DIVIDE', 1.4, 4.5)).to.equal(0.2);
   });
   it('return Error if b equals 0', () => {
-    expect(calculateNumber('DIVIDE', 1.4, 0)).to.equal('Error');
+    expect(calculateNumber('DIVIDE', 1.4, 0.3)).to.equal('Error');
   });
 });
